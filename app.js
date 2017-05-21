@@ -58,7 +58,7 @@ function parseGrid(grid) {
 		for (var x in row) {
 			x = parseInt(x);
 			var letter = row[x];
-			var pos = x + "x" + y;
+			var pos = y + "x" + x;
 			if (letter == " " || letter == undefined) {
 				continue;
 			}
@@ -77,7 +77,7 @@ function parseGrid(grid) {
 					if ((y + dy) >= 0 && (y + dy) < grid.length && (x + dx) >= 0 && (x + dx) < grid[y + dy].length) {
 						var ny = parseInt(y + dy);
 						var nx = parseInt(x + dx);
-						var n_pos = nx + 'x' + ny;
+						var n_pos = ny + 'x' + nx;
 						var n_letter = grid[ny][nx];
 						if ("a" <= n_letter && n_letter <= "z") {
 							result['adj'][pos].add(n_pos);
@@ -145,29 +145,138 @@ function parseWords(parsed) {
 	present['list'] = [];
 	present['locs'] = {};
 	present['lengths'] = {};
+	present['pos'] = {};
 	for (var i in window.wordlist) {
 		var word = window.wordlist[i];
 		var result = isWordPresent(parsed, word);
 		if (result.length > 0) {
 			present['list'].push(word);
-			present['locs'][word] = isWordPresent(parsed, word);
+			present['locs'][word] = result;
 			if (!(word.length in present['lengths'])) {
 				present['lengths'][word.length] = [];
 			}
 			present['lengths'][word.length].push(word);
+
+			for (var i in result) {
+				for (var j in result[i]) {
+					var pos = result[i][j];
+					var rep = word + "," + i;
+					if (!(pos in present['pos'])) {
+						present['pos'][pos] = [];
+					}
+
+					present['pos'][pos].push(rep);
+				}
+			}
 		}
 	}
 
 	return present;
 }
 
-function solveGame(grid) {
-	parsed = parseGrid(grid);
+function solveGame() {
+	if (window.gridHasChanged == false) {
+		return window.parsed;
+	}
+	var grid = buildGrid();
+	var parsed = parseGrid(grid);
 	parsed['words'] = parseWords(parsed);
+
+	window.parsed = parsed;
+	window.gridHasChanged = false;
+
 	return parsed;
 }
 
+function saveForm() {
+	for (var y = 0; y < 14; y++) {
+		for (var x = 0; x < 10; x++) {
+			var id = "ggs-" + y + "x" + x;
+			var el = document.getElementById(id);
+			window.localStorage.setItem("gv-" + id, el.value);
+		}
+	}
+}
+
+function restoreForm() {
+	for (var y = 0; y < 14; y++) {
+		for (var x = 0; x < 10; x++) {
+			var id = "ggs-" + y + "x" + x;
+			var el = document.getElementById(id);
+			el.value = window.localStorage.getItem("gv-" + id);
+		}
+	}
+}
+
+function clearShownOccurences() {
+	for (var y = 0; y < 14; y++) {
+		for (var x = 0; x < 10; x++) {
+			var id = "ggs-" + y + "x" + x;
+			var el = document.getElementById(id);
+			el.className = "";
+		}
+	}
+}
+
+function showWordLocationOccurence(word, location) {
+	var loc = window.parsed.words.locs[word][location];
+	for (var j in loc) {
+		var id = "ggs-" + loc[j];
+		console.log(id);
+		var el = document.getElementById(id);
+		el.className = "shown";
+	}
+}
+
+function showWordOccurences(word) {
+	clearShownOccurences();
+	var locs = window.parsed.words.locs[word];
+	for (var i in locs) {
+		showWordLocationOccurence(word, i)
+	}
+}
+
+function showLetterOccurrences(pos) {
+
+}
+
+function doSearch() {
+	solveGame();
+
+	var term = document.getElementById('search-box').value;
+	var list = [];
+	var el = document.getElementById('search-results');
+
+	if (term == '') {
+		el.innerHTML = "";
+		return;
+	}
+
+	for (var p in window.parsed.words.list) {
+		var word = window.parsed.words.list[p];
+		if (word.indexOf(term) != -1) {
+			list.push(word);
+		}
+	}
+
+	el.innerHTML = "";
+	$(el).hide();
+
+	for (var p in list) {
+		var word = list[p];
+		var times = window.parsed.words.locs[word].length;
+		var links = '<a href="#" onclick="showWordOccurences(\'' + word + '\');">Show</a>';
+
+		el.innerHTML += '<div class="search-result chip orange darken-3 white-text clickable" onclick="showWordOccurences(\'' + word + '\')">' + word + ' (' + times + ')</div>';
+	}
+
+	$(el).show();
+}
+
 document.addEventListener("DOMContentLoaded", function() {
+	restoreForm();
+	window.gridHasChanged = true;
+
 	for (var y = 0; y < 14; y++) {
 		for (var x = 0; x < 10; x++) {
 			var id = "ggs-" + y + "x" + x;
@@ -179,8 +288,15 @@ document.addEventListener("DOMContentLoaded", function() {
 					var next_id = nextID(current_id);
 					if (e.srcElement.value.length == e.srcElement.maxLength) {
 						document.getElementById(next_id).focus();
-						document.getElementById(next_id).select();
+						if (next_id != "game-btn-solve") {
+							document.getElementById(next_id).select();
+						}
 					}
+					saveForm();
+					clearShownOccurences();
+					window.gridHasChanged = true;
+				} else {
+					el.value = "";
 				}
 			}
 		}
@@ -195,18 +311,25 @@ document.addEventListener("DOMContentLoaded", function() {
 		}
 
 		document.getElementById('ggs-0x0').focus();
+		saveForm();
+		clearShownOccurences();
+		window.parsed = undefined;
+		document.getElementById('search-results').innerHTML = "";
+		document.getElementById('search-box').value = "";
 	};
 
 	document.getElementById("game-btn-solve").onclick = function(e) {
-		grid = buildGrid();
-		results = solveGame(grid);
-		window.parsed = results;
+		solveGame();
 	};
 
+	document.getElementById('search-box').onkeyup = function(e) {
+		if (e.keyCode == 13) {
+			doSearch();
+		}
+	}
+
 	document.getElementById("game-btn-search").onclick = function(e) {
-		grid = buildGrid();
-		results = solveGame(grid);
-		window.parsed = results;
+		doSearch();
 	};
 
 	document.getElementById("ggs-0x0").focus();

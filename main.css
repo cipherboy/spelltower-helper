@@ -1,87 +1,88 @@
-html {
-	margin: 0 0;
-	padding: 0px;
-	border: none;
-
-	width: 100%;
-	height: 100%;
-}
-
 body {
-	margin: 0 0;
-	padding: 0px;
-	border: none;
-
-	width: 100%;
-	height: 100%;
-
-	font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-	color: #e99f48;
-
 	background: repeating-linear-gradient(
 		45deg,
-		#ffba4e,
-		#ffba4e 10px,
-		#e99f48 10px,
-		#e99f48 20px
+		#ffb74d,
+		#ffb74d 10px,
+		#ef6c00 10px,
+		#ef6c00 20px
 	);
 }
 
-header {
-	color: #e99f48;
-	background-color: #ffffff !important;
-}
-
 #content {
-	height: calc(95% - 30px - 100px);
-	display: block;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
 
-#content-row {
-	height: 100%;
+table {
+	width: 90%;
+	border-collapse: collapse;
+	padding: 0px;
+	margin: 0 0;
 }
 
-#game-center, #sidebar, #game-board {
-	height: 100%;
+tr {
+	border-collapse: collapse;
+	border-radius: 0px;
+	padding: 0px;
+	margin: 0 0;
 }
 
-#game-board .mui-row {
-	height: 6.6%;
+td {
+	width: 5vmin;
+	height: 5vmin;
+
+	min-width: 25px;
+	min-height: 25px;
+
+	display: inline-block;
+	padding: 0px;
+	margin: 0 0;
+
+	border: 1px solid #ef6c00;
+	border-radius: 0px;
+	border-collapse: collapse;
 }
 
-.section {
-	background-color: #ffffff;
-}
-
-.square {
-	padding: 5px;
-
-	height: 100%;
-}
-
-.square input {
+#game-board input {
 	margin: 0 0;
 	padding: 0px;
-
-	border: 1px solid #000000;
-	border-radius: 2px;
 
 	width: 100%;
 	height: 100%;
 
+	font-size: 2.5vh;
 	text-align: center;
-	font-size: 2.75vh;
-	font-weight: bold;
+	border: none;
+	border-radius: 0px;
 }
 
-footer {
-	padding: 5px;
 
-	background-color: #ffba4e !important;
+#game-board input.shown {
+	background-color: #ffb74d;
 }
 
-.clear {
-	clear: both;
+#game-board input:focus {
+	border: none;
+	box-shadow: none;
+	border-radius: 0px;
+}
+
+#game-board input:active {
+	border: none;
+	box-shadow: none;
+	border-radius: 0px;
+}
+
+#search-results {
+	height: 60vh;
+	overflow-y: auto;
+}
+
+input.orange-text.text-darken-3:focus, input.orange-text.text-darken-3:active {
+    border-bottom: 1px solid #ef6c00;
+	box-shadow: 0 1px 0 0 #ef6c00;
+}
+
+.clickable {
+	cursor: pointer;
 }
