@@ -96,7 +96,7 @@ def main():
     ]
 
     obj = parse_grid(grid)
-    wordlist = read_wordlist("/usr/share/dict/words", set(obj["letter_pos"]))
+    wordlist = read_wordlist("wordlists/wordlist.txt", set(obj["letter_pos"]))
     present = filter_wordlist(obj, wordlist)
 
     return obj, wordlist, present

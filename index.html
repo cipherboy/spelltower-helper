@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" type="text/css" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<!-- load MUI -->
+		<link href="https://cdn.muicss.com/mui-0.9.16/css/mui.min.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdn.muicss.com/mui-0.9.16/js/mui.min.js"></script>
+		<style>
+			html {
+				margin: 0 0;
+				padding: 0px;
+				border: none;
+
+				width: 100%;
+				height: 100%;
+			}
+
+			body {
+				margin: 0 0;
+				padding: 0px;
+				border: none;
+
+				width: 100%;
+				height: 100%;
+
+				font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+
+
+				background: repeating-linear-gradient(
+					45deg,
+					#ffba4e,
+					#ffba4e 10px,
+					#e99f48 10px,
+					#e99f48 20px
+				);
+			}
+
+			header {
+				background-color: #e99f48 !important;
+			}
+
+			.section {
+				background-color: #ffffff;
+			}
+
+			.square {
+				padding: 5px;
+
+				border: 0.5px solid #aaaaaa;
+			}
+
+			.square input {
+				margin: 0 0;
+				padding: 0px;
+				border: none;
+
+				width: 100%;
+				height: 40px;
+
+				text-align: center;
+				font-size: 25px;
+				font-weight: bold;
+			}
+
+			footer {
+				background-color: #ffba4e !important;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-appbar">
+			<div class="mui-container mui--text-center">
+				<h1>STHelper</h1>
+			</div>
+		</header>
+		<div id="content" class="mui-container-fluid">
+			<div class="mui-row">
+				<div id="game-center" class="section mui-col-md-7">
+					<div id="game-board" class="mui-container-fluid">
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-0x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-0x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-1x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-1x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-2x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-2x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-3x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-3x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-4x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-4x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-5x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-5x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-6x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-6x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-7x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-7x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-8x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-8x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-9x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-9x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-10x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-10x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-11x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-11x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-12x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-12x9"></div>
+						</div>
+						<div class="mui-row">
+							<div class="square mui-col-xs-1 mui-col-md-1 mui-col-md-offset-1 "><input type="text" maxlength="1" id="ggs-13x0"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x1"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x2"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x3"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x4"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x5"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x6"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x7"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x8"></div>
+							<div class="square mui-col-xs-1 mui-col-md-1"><input type="text" maxlength="1" id="ggs-13x9"></div>
+						</div>
+						<div class="mui-row">
+							<button class="mui-btn">Add Row</button>
+							<button id="game-btn-solve" class="mui-btn mui-btn--primary">Solve</button>
+							<button id="game-btn-clear" class="mui-btn mui-btn--danger">Clear</button>
+						</div>
+					</div>
+				</div>
+				<div id="wordlist-right" class="section mui-col-md-offset-1 mui-col-md-4">md-3</div>
+			</div>
+		</div>
+		<footer>
+			<div class="mui-container mui--text-center mui--text-white">
+				Made with ♥ by <a href="https://cipherboy.com">cipherboy</a>.
+			</div>
+		</footer>
+		<script>
+			function nextID(id) {
+				var p = id.substr(4).split('x');
+				p[0] = parseInt(p[0])
+				p[1] = parseInt(p[1])
+				element = "ggs-";
+				if (p[0] == 13 && p[1] == 9) {
+					element = "game-solve";
+				} else if (p[1] == '9') {
+					p[1] = 0
+					p[0] += 1;
+					element = element + p[0] + "x" + p[1];
+				} else {
+					p[1] += 1
+					element = element + p[0] + "x" + p[1];
+				}
+				return element
+			}
+
+			(function() {
+				document.getElementById("ggs-0x0").focus();
+				for (var y = 0; y < 14; y++) {
+					for (var x = 0; x < 10; x++) {
+						id = "ggs-" + y + "x" + x;
+						document.getElementById(id).onkeyup = function(e) {
+							if ((e.keyCode >= 65 && e.keyCode <= 90) || e.keyCode == 32) {
+								var current_id = e.srcElement.id;
+								var next_id = nextID(current_id);
+								console.log(e.srcElement.value.length + " vs " + e.srcElement.maxLength)
+								if (e.srcElement.value.length == e.srcElement.maxLength) {
+									console.log(e)
+									console.log(next_id);
+									document.getElementById(next_id).focus();
+								}
+							}
+						}
+					}
+				}
+
+				document.getElementById("game-btn-clear").onclick = function(e) {
+					for (var y = 0; y < 14; y++) {
+						for (var x = 0; x < 10; x++) {
+							id = "ggs-" + y + "x" + x;
+							console.log("here");
+							document.getElementById(id).value = "";
+						}
+					}
+
+					document.getElementById('ggs-0x0').focus();
+				}
+
+				document.getElementById("game-btn-solve").onclick = function(e) {
+
+				}
+			})();
+		</script>
+	</body>
+</html>
