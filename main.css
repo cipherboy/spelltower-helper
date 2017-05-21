@@ -73,6 +73,11 @@ td {
 	border-radius: 0px;
 }
 
+#sidebar {
+	height: 70vh;
+	overflow-y: auto;
+}
+
 #search-results {
 	height: 60vh;
 	overflow-y: auto;

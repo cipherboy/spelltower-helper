@@ -185,7 +185,38 @@ function solveGame() {
 	window.parsed = parsed;
 	window.gridHasChanged = false;
 
+	updateSidebar();
+
 	return parsed;
+}
+
+function updateSidebar() {
+	el = document.getElementById('sidebar');
+
+	$(el).hide();
+	el.innerHTML = "";
+
+	for (var i = 100; i > 0; i--) {
+		if (i in window.parsed.words.lengths) {
+			console.log(i);
+
+			var list = window.parsed.words.lengths[i];
+			var card = '<div class="card orange lighten-2"><div class="card-content white-text"><span class="card-title">' + i + '-Letter Words</span><div>';
+
+			for (var p in list) {
+				var word = list[p];
+				var times = window.parsed.words.locs[word].length;
+
+				card += '<div class="search-result chip orange darken-3 white-text clickable" onclick="showWordOccurences(\'' + word + '\')">' + word + ' (' + times + ')</div>';
+			}
+
+			card += '</div></div></div>';
+
+			el.innerHTML += card;
+		}
+	}
+
+	$(el).show();
 }
 
 function saveForm() {
@@ -248,7 +279,7 @@ function showLetterOccurrences(pos) {
 		}
 		showWordLocationOccurence(word, loc);
 	}
-	
+
 	var el = document.getElementById('search-results');
 	el.innerHTML = "";
 	$(el).hide();
@@ -256,7 +287,6 @@ function showLetterOccurrences(pos) {
 	for (var p in list) {
 		var word = list[p];
 		var times = window.parsed.words.locs[word].length;
-		var links = '<a href="#" onclick="showWordOccurences(\'' + word + '\');">Show</a>';
 
 		el.innerHTML += '<div class="search-result chip orange darken-3 white-text clickable" onclick="showWordOccurences(\'' + word + '\')">' + word + ' (' + times + ')</div>';
 	}
