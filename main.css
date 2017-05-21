@@ -14,7 +14,7 @@ body {
 }
 
 table {
-	width: 90%;
+	width: 100%;
 	border-collapse: collapse;
 	padding: 0px;
 	margin: 0 0;
@@ -41,6 +41,16 @@ td {
 	border: 1px solid #ef6c00;
 	border-radius: 0px;
 	border-collapse: collapse;
+}
+
+td.button {
+	border: none;
+	padding-left: 2px;
+}
+
+td.button a {
+	width: 24;
+	height: 24;
 }
 
 #game-board input {

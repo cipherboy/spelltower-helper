@@ -194,14 +194,14 @@ function updateSidebar() {
 	el = document.getElementById('sidebar');
 
 	$(el).hide();
-	el.innerHTML = "";
+	el.innerHTML = '<div class="card orange darken-3"><div class="card-content white-text"><span class="card-title">Total Words: ' + window.parsed.words.list.length + '</span></div></div>';
+
+
 
 	for (var i = 100; i > 0; i--) {
 		if (i in window.parsed.words.lengths) {
-			console.log(i);
-
 			var list = window.parsed.words.lengths[i];
-			var card = '<div class="card orange lighten-2"><div class="card-content white-text"><span class="card-title">' + i + '-Letter Words</span><div>';
+			var card = '<div class="card orange lighten-2"><div class="card-content white-text"><span class="card-title">' + i + '-Letter Words (' + list.length + ')</span><div>';
 
 			for (var p in list) {
 				var word = list[p];
@@ -253,7 +253,6 @@ function showWordLocationOccurence(word, location) {
 	var loc = window.parsed.words.locs[word][location];
 	for (var j in loc) {
 		var id = "ggs-" + loc[j];
-		console.log(id);
 		var el = document.getElementById(id);
 		el.className = "shown";
 	}
@@ -265,6 +264,28 @@ function showWordOccurences(word) {
 	for (var i in locs) {
 		showWordLocationOccurence(word, i)
 	}
+}
+
+function clearRow(row) {
+	for (var x = 0; x < 10; x++) {
+		var id = "ggs-" + row + "x" + x;
+		var el = document.getElementById(id);
+		el.value = "";
+	}
+	saveForm();
+}
+
+function deleteRow(row) {
+	for (var y = row; y > 0; y--) {
+		for (var x = 0; x < 10; x++) {
+			var id = "ggs-" + y + "x" + x;
+			var uid = "ggs-" + (parseInt(y) - 1) + "x" + x;
+			var el = document.getElementById(id);
+			el.value = document.getElementById(uid).value;
+		}
+	}
+	clearRow(0);
+	saveForm();
 }
 
 function showLetterOccurrences(pos) {
@@ -337,6 +358,23 @@ function clearLocOnClick() {
 	}
 }
 
+function shiftGridUp() {
+	for (var y = 0; y < 13; y++) {
+		for (var x = 0; x < 10; x++) {
+			var id = "ggs-" + y + "x" + x;
+			var did = "ggs-" + (parseInt(y) + 1) + "x" + x;
+			var el = document.getElementById(id);
+			el.value = document.getElementById(did).value;
+		}
+	}
+	var y = 13;
+	for (var x = 0; x < 10; x++) {
+		var id = "ggs-" + y + "x" + x;
+		var el = document.getElementById(id);
+		el.value = '';
+	}
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 	restoreForm();
 	window.gridHasChanged = true;
@@ -401,6 +439,12 @@ document.addEventListener("DOMContentLoaded", function() {
 				};
 			}
 		}
+	}
+
+	document.getElementById("game-btn-addrow").onclick = function(e) {
+		shiftGridUp();
+		saveForm();
+		clearShownOccurences();
 	}
 
 	document.getElementById('search-box').onkeyup = function(e) {
