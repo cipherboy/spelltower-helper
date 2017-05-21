@@ -1,0 +1,87 @@
+html {
+	margin: 0 0;
+	padding: 0px;
+	border: none;
+
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	margin: 0 0;
+	padding: 0px;
+	border: none;
+
+	width: 100%;
+	height: 100%;
+
+	font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	color: #e99f48;
+
+	background: repeating-linear-gradient(
+		45deg,
+		#ffba4e,
+		#ffba4e 10px,
+		#e99f48 10px,
+		#e99f48 20px
+	);
+}
+
+header {
+	color: #e99f48;
+	background-color: #ffffff !important;
+}
+
+#content {
+	height: calc(95% - 30px - 100px);
+	display: block;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#content-row {
+	height: 100%;
+}
+
+#game-center, #sidebar, #game-board {
+	height: 100%;
+}
+
+#game-board .mui-row {
+	height: 6.6%;
+}
+
+.section {
+	background-color: #ffffff;
+}
+
+.square {
+	padding: 5px;
+
+	height: 100%;
+}
+
+.square input {
+	margin: 0 0;
+	padding: 0px;
+
+	border: 1px solid #000000;
+	border-radius: 2px;
+
+	width: 100%;
+	height: 100%;
+
+	text-align: center;
+	font-size: 2.75vh;
+	font-weight: bold;
+}
+
+footer {
+	padding: 5px;
+
+	background-color: #ffba4e !important;
+}
+
+.clear {
+	clear: both;
+}
