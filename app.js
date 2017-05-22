@@ -41,6 +41,8 @@ function parseGrid(grid) {
 	result['grid'] = grid;
 	result['pos'] = {};
 	result['adj'] = {};
+	result['bigraphs'] = {};
+	result['trigraphs'] = {};
 
 	for (var rid in grid) {
 		var row = grid[rid];
@@ -89,6 +91,24 @@ function parseGrid(grid) {
 		}
 	}
 
+	console.log("Start");
+	for (var i in window.bigraphs) {
+		var bg = window.bigraphs[i];
+		var bg_r = findGraphs(result, bg);
+		if (bg_r.length > 0) {
+			result['bigraphs'][bg] = bg_r;
+		}
+	}
+
+	for (var i in window.trigraphs) {
+		var tg = window.trigraphs[i];
+		var tg_r = findGraphs(result, tg);
+		if (tg_r.length > 0) {
+			result['trigraphs'][tg] = tg_r;
+		}
+	}
+	console.log("End Graphs");
+
 	return result;
 }
 
@@ -102,8 +122,52 @@ Set.prototype.intersection = function(setB) {
 	return intersection;
 }
 
+function mergePaths(left, right) {
+	var r_paths = [];
 
-function isWordPresent(parsed, word) {
+	if (left == undefined) {
+		return [];
+	} else if (right == undefined) {
+		return [];
+	} else if (left.length == 0) {
+		return [];
+	} else if (right.length == 0) {
+		return [];
+	}
+
+	for (var i in left) {
+		var l_path = left[i];
+		for (var j in right) {
+			var r_path = right[j];
+			if (r_path[0] != l_path[l_path.length - 1]) {
+				continue;
+			}
+
+			var duplicate = false;
+			for (var k = 1; k < r_path.length; k++) {
+				if (l_path.indexOf(r_path[k]) != -1) {
+					duplicate = true;
+					break;
+				}
+			}
+
+			if (duplicate) {
+				break;
+			}
+
+			var n_path = l_path.slice();
+			for (var k = 1; k < r_path.length; k++) {
+				n_path.push(r_path[k]);
+			}
+
+			r_paths.push(n_path);
+		}
+	}
+
+	return r_paths;
+}
+
+function findGraphs(parsed, word) {
 	for (var loc in word) {
 		var chr = word[loc];
 		if (parsed["pos"][chr] == undefined) {
@@ -140,14 +204,86 @@ function isWordPresent(parsed, word) {
 	return paths;
 }
 
+function isWordPresent(parsed, word) {
+	for (var loc in word) {
+		var chr = word[loc];
+		if (parsed["pos"][chr] == undefined) {
+			return [];
+		}
+	}
+
+	if (word.length == 0) {
+		return [];
+	}
+
+	if (word.length == 1) {
+		return parsed.pos[word];
+	}
+
+	if (word.length == 2) {
+		if (word in parsed.bigraphs) {
+			return parsed.bigraphs[word];
+		} else {
+			return [];
+		}
+	}
+
+	if (word.length == 3) {
+		if (word in parsed.trigraphs) {
+			return parsed.trigraphs[word];
+		} else {
+			return [];
+		}
+	}
+
+	var paths = [];
+	if (!(word.substr(0,3) in parsed.trigraphs)) {
+		return [];
+	}
+
+	paths = parsed.trigraphs[word.substr(0,3)];
+
+	var lpos = 2;
+
+	while (lpos < word.length - 1) {
+		if (paths.length == 0) {
+			break;
+		}
+
+		var rword = word.substr(lpos);
+		if (rword.length == 2) {
+			paths = mergePaths(paths, parsed.bigraphs[rword]);
+			lpos = word.length;
+		} else if (rword.length == 3) {
+			paths = mergePaths(paths, parsed.trigraphs[rword]);
+			lpos = word.length;
+		} else {
+			paths = mergePaths(paths, parsed.trigraphs[rword.substr(0, 3)]);
+			lpos += 2;
+		}
+	}
+
+	return paths;
+}
+
 function parseWords(parsed) {
 	present = {};
 	present['list'] = [];
 	present['locs'] = {};
 	present['lengths'] = {};
 	present['pos'] = {};
+	console.log("Start Words");
 	for (var i in window.wordlist) {
 		var word = window.wordlist[i];
+
+		var found = false;
+		for (var i = 0; i < word.length - 2; i++) {
+			if (!(word.substr(i, i+3) in parsed.trigraphs)) {
+				found = true;
+				break;
+			}
+		}
+
 		var result = isWordPresent(parsed, word);
 		if (result.length > 0) {
 			present['list'].push(word);
@@ -170,6 +306,7 @@ function parseWords(parsed) {
 			}
 		}
 	}
+	console.log("End Words");
 
 	return present;
 }
